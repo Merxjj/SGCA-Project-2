@@ -46,12 +46,11 @@ To run this project locally in **under 2 minutes**:
 
 ---
 
-## 🔑 Test Credentials
-| Account Type | Email | Password |
-| :--- | :--- | :--- |
-| **Super Admin** | `superadmin@saas.com` | `password123` |
-| **School Admin** | `admin@globaledu.com` | `password123` |
-| **Student** | `student@globaledu.com` | `password123` |
+## 🔑 Official Demo Account (For Live Testing)
+To check the live website immediately without creating a new account:
+- **URL**: [https://sgca-project-2.onrender.com/login](https://sgca-project-2.onrender.com/login)
+- **Email**: `admin@globaltech.edu`
+- **Password**: `password123`
 
 ---
 
