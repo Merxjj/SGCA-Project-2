@@ -3,7 +3,6 @@
 A high-performance, multi-tenant SaaS platform built for schools and universities to manage digital ID cards and track student attendance via QR codes.
 
 🚀 **Live Demo**: [https://sgca-project-2.onrender.com](https://sgca-project-2.onrender.com)  
-*(Note: Please allow ~30-60 seconds for the first load as the server is hosted on a free tier and may have a cold start.)*
 
 ---
 
