@@ -3,7 +3,17 @@
 A high-performance, multi-tenant SaaS platform built for schools and universities to manage digital ID cards and track student attendance via QR codes.
 
 🚀 **Live Demo**: [https://sgca-project-2.onrender.com](https://sgca-project-2.onrender.com)  
-*(Note: Please allow ~30-60 seconds for the first load due to Render's free tier cold start.)*
+
+---
+
+## ⚡ Quick Start (For Evaluators)
+To run this project locally in **under 2 minutes**:
+1.  **Extract** the ZIP and open terminal in the folder.
+2.  **Install**: `npm install`
+3.  **Config**: Rename `.env.example` to `.env`.
+4.  **Seed**: `node seed.js` (This populates the DB with dummy schools and users).
+5.  **Run**: `node server.js`
+6.  **Login**: Use `superadmin@saas.com` / `password123` at `http://localhost:3000/login`.
 
 ---
 
