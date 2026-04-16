@@ -40,6 +40,38 @@ exports.login = async (req, res) => {
     }
 };
 
+exports.renderSignup = (req, res) => {
+    res.render('signup');
+};
+
+exports.signup = async (req, res) => {
+    try {
+        const { schoolName, contactEmail, address, adminName, password } = req.body;
+        
+        // 1. Create the School
+        const School = require('../models/School');
+        const newSchool = await School.create({
+            name: schoolName,
+            contactEmail: contactEmail,
+            address: address
+        });
+
+        // 2. Create the Admin User for that school
+        await User.create({
+            name: adminName,
+            email: contactEmail,
+            password: password,
+            role: 'school_admin',
+            schoolId: newSchool._id
+        });
+
+        res.redirect('/login');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Registration failed: ' + err.message);
+    }
+};
+
 exports.logout = (req, res) => {
     req.session.destroy();
     res.redirect('/login');
