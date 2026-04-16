@@ -3,86 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDU-ID SaaS | Student Management</title>
+    <title>EDU-ID SaaS | Student Directory</title>
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .student-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        .id-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            position: relative;
-        }
-        .id-header {
-            background: var(--primary);
-            color: white;
-            padding: 1rem;
-            text-align: center;
-        }
-        .id-body {
-            display: flex;
-            padding: 1.5rem;
-            gap: 1rem;
-        }
-        .student-photo {
-            width: 100px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 6px;
-            border: 2px solid var(--border);
-        }
-        .student-details {
-            flex: 1;
-        }
-        .student-details p {
-            font-size: 0.8rem;
-            margin-bottom: 0.25rem;
-            color: var(--text-muted);
-        }
-        .student-details h3 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-main);
-        }
-        .id-footer {
-            border-top: 1px dashed var(--border);
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #fafafa;
-        }
-        .qr-small {
-            width: 60px;
-            height: 60px;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Student ID Management</h1>
-            <div style="display: flex; gap: 1rem;">
-                <a href="/schools" style="color: var(--text-muted); text-decoration: none;">Schools</a>
-                <a href="/users" style="color: var(--text-muted); text-decoration: none;">Users</a>
-            </div>
+            <h1>Student Management</h1>
+            <nav style="display: flex; gap: 1.5rem;">
+                <a href="/schools" style="color: var(--text-muted); text-decoration: none; font-weight: 500;">Schools</a>
+                <a href="/users" style="color: var(--text-muted); text-decoration: none; font-weight: 500;">Users</a>
+                <a href="/students" style="color: var(--primary); text-decoration: none; font-weight: 600;">Students</a>
+            </nav>
         </header>
 
-        <!-- Register Student Form -->
+        <!-- Register Student -->
         <section class="card">
             <h2 style="margin-bottom: 1.5rem; font-size: 1.25rem;">Register New Student</h2>
             <form action="/students/add" method="POST" enctype="multipart/form-data">
                 <div class="form-grid">
                     <div class="form-group">
-                        <label for="name">Student Full Name</label>
+                        <label for="name">Full Name</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
@@ -90,76 +32,83 @@
                         <input type="text" id="rollNo" name="rollNo" required>
                     </div>
                     <div class="form-group">
-                        <label for="className">Class / Grade</label>
-                        <input type="text" id="className" name="className" required>
+                        <label for="class">Class / Grade</label>
+                        <input type="text" id="class" name="class" placeholder="e.g. 10-A" required>
                     </div>
                 </div>
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="bloodGroup">Blood Group</label>
-                        <select id="bloodGroup" name="bloodGroup" required>
-                            <option value="A+">A+</option>
-                            <option value="B+">B+</option>
-                            <option value="O+">O+</option>
-                            <option value="AB+">AB+</option>
-                            <option value="A-">A-</option>
-                            <option value="B-">B-</option>
-                            <option value="O-">O-</option>
-                            <option value="AB-">AB-</option>
-                        </select>
+                        <input type="text" id="bloodGroup" name="bloodGroup" placeholder="e.g. O+">
                     </div>
                     <div class="form-group">
                         <label for="schoolId">School</label>
                         <select id="schoolId" name="schoolId" required>
+                            <option value="">-- Assign School --</option>
                             <% schools.forEach(school => { %>
                                 <option value="<%= school._id %>"><%= school.name %></option>
                             <% }) %>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="studentImage">Upload Photo</label>
+                        <label for="studentImage">Student Photo</label>
                         <input type="file" id="studentImage" name="studentImage" accept="image/*" required>
                     </div>
                 </div>
                 <div style="margin-top: 1.5rem; text-align: right;">
-                    <button type="submit">Register & Generate QR</button>
+                    <button type="submit">Complete Registration</button>
                 </div>
             </form>
         </section>
 
-        <!-- Student ID Cards List -->
-        <h2 style="margin-bottom: 1rem;">Generated ID Cards</h2>
-        <div class="student-grid">
-            <% if (students.length > 0) { %>
-                <% students.forEach(student => { %>
-                    <div class="id-card">
-                        <div class="id-header">
-                            <p style="font-size: 0.7rem; font-weight: 600; text-transform: uppercase;"><%= student.schoolId.name %></p>
-                            <p style="font-size: 0.9rem; font-weight: 700;">STUDENT ID CARD</p>
-                        </div>
-                        <div class="id-body">
-                            <img src="<%= student.image || '/img/placeholder.png' %>" class="student-photo">
-                            <div class="student-details">
-                                <p>NAME</p>
-                                <h3><%= student.name %></h3>
-                                <p>ROLL NO: <b><%= student.rollNo %></b></p>
-                                <p>CLASS: <b><%= student.class %></b></p>
-                                <p>BLOOD: <b style="color: #ef4444;"><%= student.bloodGroup %></b></p>
-                            </div>
-                        </div>
-                        <div class="id-footer">
-                            <div style="font-size: 0.65rem; color: var(--text-muted);">
-                                Valid until: 2026-27 Session<br>
-                                Issued by EDU-ID SaaS
-                            </div>
-                            <img src="<%= student.qrCode %>" class="qr-small">
-                        </div>
-                    </div>
-                <% }) %>
-            <% } else { %>
-                <p style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 2rem;">No students registered yet.</p>
-            <% } %>
-        </div>
+        <!-- Students Directory -->
+        <section class="card" style="padding: 1rem 0;">
+            <div style="padding: 0 2rem 1rem 2rem;">
+                <h2 style="font-size: 1.25rem;">Student Records</h2>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="padding-left: 2rem;">Photo</th>
+                        <th>Name</th>
+                        <th>Roll No</th>
+                        <th>QR Code</th>
+                        <th>Class</th>
+                        <th>School</th>
+                        <th style="padding-right: 2rem;">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (students.length > 0) { %>
+                        <% students.forEach(student => { %>
+                            <tr>
+                                <td style="padding-left: 2rem;">
+                                    <img src="<%= student.imgUrl %>" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border);">
+                                </td>
+                                <td style="font-weight: 600;"><%= student.name %></td>
+                                <td style="color: var(--text-muted);"><%= student.rollNo %></td>
+                                <td>
+                                    <img src="<%= student.qrCode %>" alt="QR" style="width: 50px; height: 50px;">
+                                    <br>
+                                    <a href="<%= student.qrCode %>" download="<%= student.rollNo %>_QR.png" style="font-size: 0.6rem; color: var(--primary);">Download</a>
+                                </td>
+                                <td><%= student.class %></td>
+                                <td style="color: var(--text-muted); font-size: 0.85rem;"><%= student.schoolId.name %></td>
+                                <td style="padding-right: 2rem;">
+                                    <span class="badge badge-active">Active</span>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 3rem; color: var(--text-muted);">
+                                No student records found.
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </section>
     </div>
 </body>
 </html>

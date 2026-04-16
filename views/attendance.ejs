@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDU-ID SaaS | Security Scanning</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body style="background: #1e293b; color: white;">
+    <div class="container">
+        <header style="border-bottom: 1px solid #334155; padding-bottom: 1rem;">
+            <h1 style="background: white; -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Security Portal (Live Scanner)</h1>
+            <nav style="display: flex; gap: 1.5rem;">
+                <a href="/students" style="color: #94a3b8; text-decoration: none;">Dashboard</a>
+                <a href="/attendance" style="color: white; text-decoration: none; font-weight: 600;">Logs</a>
+            </nav>
+        </header>
+
+        <!-- Scanning Simulation -->
+        <section class="card" style="background: #0f172a; border-color: #334155; text-align: center; margin-top: 2rem;">
+            <div style="margin-bottom: 2rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🔍</div>
+                <h2 style="color: white;">Scan Student QR Code</h2>
+                <p style="color: #94a3b8;">Mark Entry/Exit for the school campus</p>
+            </div>
+
+            <form action="/attendance/mark" method="POST" style="max-width: 400px; margin: 0 auto;">
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label style="color: #94a3b8; text-align: left;">Roll Number (from QR Scan)</label>
+                    <input type="text" name="rollNo" placeholder="Enter Roll Number" required 
+                           style="background: #1e293b; border-color: #334155; color: white; width: 100%; font-size: 1.25rem;">
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <button type="submit" name="type" value="entry" style="background: #10b981; padding: 1rem;">MARK ENTRY</button>
+                    <button type="submit" name="type" value="exit" style="background: #ef4444; padding: 1rem;">MARK EXIT</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Recent Logs -->
+        <section class="card" style="background: #0f172a; border-color: #334155; padding: 1rem 0;">
+            <div style="padding: 0 2rem 1rem 2rem;">
+                <h2 style="font-size: 1.25rem; color: white;">Daily Attendance Logs</h2>
+            </div>
+            <table style="color: #cbd5e1;">
+                <thead>
+                    <tr style="border-bottom-color: #334155;">
+                        <th style="padding-left: 2rem; color: #94a3b8;">Student</th>
+                        <th style="color: #94a3b8;">School</th>
+                        <th style="color: #94a3b8;">Event</th>
+                        <th style="padding-right: 2rem; color: #94a3b8;">Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (logs.length > 0) { %>
+                        <% logs.forEach(log => { %>
+                            <tr style="border-bottom-color: #1e293b;">
+                                <td style="padding-left: 2rem; font-weight: 600; color: white;">
+                                    <%= log.studentId ? log.studentId.name : 'Unknown Student' %>
+                                </td>
+                                <td><%= log.schoolId ? log.schoolId.name : 'N/A' %></td>
+                                <td>
+                                    <span class="badge" style="background: <%= log.type === 'entry' ? '#065f46' : '#991b1b' %>; color: white;">
+                                        <%= log.type.toUpperCase() %>
+                                    </span>
+                                </td>
+                                <td style="padding-right: 2rem; color: #94a3b8; font-family: monospace;">
+                                    <%= new Date(log.timestamp).toLocaleTimeString() %>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="4" style="text-align: center; padding: 3rem; color: #475569;">
+                                No one has scanned today yet.
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>

@@ -22,6 +22,7 @@ app.use(session({
 app.use('/schools', require('./routes/schoolRoutes'));
 app.use('/users', require('./routes/userRoutes'));
 app.use('/students', require('./routes/studentRoutes'));
+app.use('/attendance', require('./routes/attendanceRoutes'));
 
 // Root Redirect
 app.get('/', (req, res) => res.redirect('/schools'));
