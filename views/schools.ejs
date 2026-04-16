@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDU-ID SaaS | Manage Schools</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>EDU-ID SaaS Dashboard</h1>
+            <span style="color: var(--text-muted); font-weight: 500;">Version 1.0</span>
+        </header>
+
+        <!-- Add School Section -->
+        <section class="card">
+            <h2 style="margin-bottom: 1.5rem; font-size: 1.25rem;">Register New School</h2>
+            <form action="/schools/add" method="POST">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="name">School Name</label>
+                        <input type="text" id="name" name="name" placeholder="e.g. St. Xavier High School" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contactEmail">Contact Email</label>
+                        <input type="email" id="contactEmail" name="contactEmail" placeholder="admin@school.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="planType">Subscription Plan</label>
+                        <select id="planType" name="planType">
+                            <option value="basic">Basic (Free)</option>
+                            <option value="premium">Premium ($99/mo)</option>
+                            <option value="enterprise">Enterprise (Custom)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Full Address</label>
+                    <input type="text" id="address" name="address" placeholder="123 Education Lane, City" required>
+                </div>
+                <div style="margin-top: 1.5rem; text-align: right;">
+                    <button type="submit">Create School Account</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Schools List -->
+        <section class="card" style="padding: 1rem 0;">
+            <div style="padding: 0 2rem 1rem 2rem;">
+                <h2 style="font-size: 1.25rem;">Active Schools</h2>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="padding-left: 2rem;">School Name</th>
+                        <th>Email</th>
+                        <th>Plan</th>
+                        <th>Status</th>
+                        <th style="padding-right: 2rem;">Joined Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (schools.length > 0) { %>
+                        <% schools.forEach(school => { %>
+                            <tr>
+                                <td style="padding-left: 2rem; font-weight: 600;"><%= school.name %></td>
+                                <td style="color: var(--text-muted);"><%= school.contactEmail %></td>
+                                <td><span class="plan-<%= school.planType %> text-uppercase"><%= school.planType %></span></td>
+                                <td>
+                                    <span class="badge badge-<%= school.subscriptionStatus %>">
+                                        <%= school.subscriptionStatus %>
+                                    </span>
+                                </td>
+                                <td style="padding-right: 2rem; color: var(--text-muted);">
+                                    <%= new Date(school.createdAt).toLocaleDateString() %>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 3rem; color: var(--text-muted);">
+                                No schools registered yet. Start by adding one above.
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</body>
+</html>
