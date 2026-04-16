@@ -3,6 +3,20 @@
 A high-performance, multi-tenant SaaS platform built for schools and universities to manage digital ID cards and track student attendance via QR codes.
 
 🚀 **Live Demo**: [https://sgca-project-2.onrender.com](https://sgca-project-2.onrender.com)  
+*(Note: Please allow ~30-60 seconds for the first load as the server is hosted on a free tier and may have a cold start.)*
+
+---
+
+## 🔑 Multi-Role Demo Accounts (Live Site)
+Use these credentials to test different user perspectives immediately:
+
+| Role | Email | Password | Access |
+| :--- | :--- | :--- | :--- |
+| **Super Admin** | `superadmin@saas.com` | `password123` | SaaS Panel (Manage Schools) |
+| **School Admin** | `admin@globaltech.edu` | `password123` | Enrollment & QR Dashboard |
+| **Teacher** | `teacher@globaltech.edu` | `password123` | Student Records Access |
+| **Student** | `student@globaltech.edu` | `password123` | Personal Digital ID Card |
+| **Security Guard** | `guard@globaltech.edu` | `password123` | Live Attendance Scan Portal |
 
 ---
 
@@ -43,19 +57,6 @@ To run this project locally in **under 2 minutes**:
    - Includes a unique QR code linked to the student's Roll ID.
 4. **Digital ID Access**: Students log in via their institutional email to view their dynamic ID card.
 5. **Scanning & Logs**: The campus entry point scans the student's QR to mark time-stamped Entry/Exit logs.
-
----
-
-## 🔑 Multi-Role Demo Accounts (Live Site)
-Use these credentials to test different user perspectives:
-
-| Role | Email | Password | Access |
-| :--- | :--- | :--- | :--- |
-| **Super Admin** | `superadmin@saas.com` | `password123` | SaaS Panel (Manage Schools) |
-| **School Admin** | `admin@globaltech.edu` | `password123` | Enrollment & QR Dashboard |
-| **Teacher** | `teacher@globaltech.edu` | `password123` | Student Records Access |
-| **Student** | `student@globaltech.edu` | `password123` | Personal Digital ID Card |
-| **Security Guard** | `guard@globaltech.edu` | `password123` | Live Attendance Scan Portal |
 
 ---
 
