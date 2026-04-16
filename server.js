@@ -21,6 +21,7 @@ app.use(session({
 // Routes
 app.use('/schools', require('./routes/schoolRoutes'));
 app.use('/users', require('./routes/userRoutes'));
+app.use('/students', require('./routes/studentRoutes'));
 
 // Root Redirect
 app.get('/', (req, res) => res.redirect('/schools'));
@@ -44,5 +45,3 @@ mongoose.connect(process.env.MONGO_URI)
         console.error('❌ MongoDB Connection Failed:', err.message);
         process.exit(1);
     });
-
-module.exports = app;
