@@ -33,6 +33,8 @@ exports.login = async (req, res) => {
             return res.redirect('/students');
         } else if (user.role === 'student') {
             return res.redirect('/profile');
+        } else if (user.role === 'security_guard') {
+            return res.redirect('/attendance');
         }
     } catch (err) {
         console.error(err);

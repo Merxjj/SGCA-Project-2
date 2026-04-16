@@ -46,11 +46,16 @@ To run this project locally in **under 2 minutes**:
 
 ---
 
-## 🔑 Official Demo Account (For Live Testing)
-To check the live website immediately without creating a new account:
-- **URL**: [https://sgca-project-2.onrender.com/login](https://sgca-project-2.onrender.com/login)
-- **Email**: `admin@globaltech.edu`
-- **Password**: `password123`
+## 🔑 Multi-Role Demo Accounts (Live Site)
+Use these credentials to test different user perspectives:
+
+| Role | Email | Password | Access |
+| :--- | :--- | :--- | :--- |
+| **Super Admin** | `superadmin@saas.com` | `password123` | SaaS Panel (Manage Schools) |
+| **School Admin** | `admin@globaltech.edu` | `password123` | Enrollment & QR Dashboard |
+| **Teacher** | `teacher@globaltech.edu` | `password123` | Student Records Access |
+| **Student** | `student@globaltech.edu` | `password123` | Personal Digital ID Card |
+| **Security Guard** | `guard@globaltech.edu` | `password123` | Live Attendance Scan Portal |
 
 ---
 
