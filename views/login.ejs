@@ -6,15 +6,18 @@
     <title>Login | EDU-ID SaaS</title>
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             background: radial-gradient(circle at top left, #6366f1, #a855f7);
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0;
-            overflow: hidden;
+            padding: 1rem;
+            flex-direction: column;
+            gap: 2rem;
         }
         .login-card {
             background: rgba(255, 255, 255, 0.95);
@@ -25,6 +28,7 @@
             width: 100%;
             max-width: 450px;
             animation: slideIn 0.5s ease-out;
+            position: relative;
         }
         @keyframes slideIn {
             from { transform: translateY(20px); opacity: 0; }
@@ -35,11 +39,12 @@
             margin-bottom: 2rem;
         }
         .login-header h1 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 0.5rem;
             background: linear-gradient(135deg, #6366f1, #a855f7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: 800;
         }
         .error-box {
             background: #fee2e2;
@@ -56,14 +61,67 @@
             padding: 1rem;
             font-size: 1rem;
             margin-top: 1rem;
+            border-radius: 0.75rem;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .login-card button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.4);
+        }
+        
+        /* Demo & GitHub Section */
+        .demo-info {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 100%;
+            max-width: 450px;
+            color: white;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            transition: background 0.2s;
+        }
+        .github-link:hover {
+            background: rgba(0, 0, 0, 0.4);
+        }
+        .demo-credentials {
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            opacity: 0.9;
+        }
+        .demo-credentials strong {
+            color: #fbbf24;
         }
     </style>
 </head>
 <body>
     <div class="login-card">
         <div class="login-header">
-            <h1>EDU-ID SaaS</h1>
-            <p style="color: var(--text-muted);">Unified Portal for Students & Admins</p>
+            <h1>EDU-ID</h1>
+            <p style="color: var(--text-muted); font-weight: 500;">Unified Identity SaaS Portal</p>
         </div>
 
         <% if (error) { %>
@@ -73,21 +131,34 @@
         <form action="/login" method="POST">
             <div class="form-group" style="margin-bottom: 1.5rem;">
                 <label for="email">Institutional Email</label>
-                <input type="email" id="email" name="email" placeholder="admin@university.com" required>
+                <input type="email" id="email" name="email" placeholder="admin@university.com" required 
+                       style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid #e2e8f0;">
             </div>
             <div class="form-group" style="margin-bottom: 1.5rem;">
                 <div style="display: flex; justify-content: space-between;">
                     <label for="password">Password</label>
-                    <a href="#" style="font-size: 0.75rem; color: var(--primary); text-decoration: none;">Forgot?</a>
+                    <a href="#" style="font-size: 0.75rem; color: #6366f1; text-decoration: none;">Forgot?</a>
                 </div>
-                <input type="password" id="password" name="password" placeholder="••••••••" required>
+                <input type="password" id="password" name="password" placeholder="••••••••" required 
+                       style="width: 100%; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid #e2e8f0;">
             </div>
             <button type="submit">Sign In to Dashboard</button>
         </form>
         
         <p style="text-align: center; margin-top: 2rem; font-size: 0.875rem; color: var(--text-muted);">
-            Don't have an account? <a href="/signup" style="color: var(--primary); font-weight: 600; text-decoration: none;">Register School</a>
+            Don't have an account? <a href="/signup" style="color: #6366f1; font-weight: 600; text-decoration: none;">Register School</a>
         </p>
+    </div>
+
+    <div class="demo-info">
+        <a href="https://github.com/MerajAlam/sgca-project-a" target="_blank" class="github-link">
+            <i class="fab fa-github"></i> View Repository
+        </a>
+        <div class="demo-credentials">
+            <p><strong>Evaluator Note:</strong> Demo accounts are listed in the repository README.</p>
+            <p style="font-size: 0.75rem; margin-top: 0.25rem;">Quick Access: <strong>superadmin@saas.com</strong> / <strong>password123</strong></p>
+        </div>
     </div>
 </body>
 </html>
+
