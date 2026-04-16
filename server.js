@@ -19,13 +19,14 @@ app.use(session({
 }));
 
 // Routes
+app.use('/', require('./routes/authRoutes'));
 app.use('/schools', require('./routes/schoolRoutes'));
 app.use('/users', require('./routes/userRoutes'));
 app.use('/students', require('./routes/studentRoutes'));
 app.use('/attendance', require('./routes/attendanceRoutes'));
 
 // Root Redirect
-app.get('/', (req, res) => res.redirect('/schools'));
+app.get('/', (req, res) => res.redirect('/login'));
 
 // Global Error Handler
 app.use((err, req, res, next) => {

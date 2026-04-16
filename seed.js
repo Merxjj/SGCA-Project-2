@@ -47,14 +47,7 @@ const seedData = async () => {
                     schoolId: school._id
                 },
                 {
-                    name: `Guard ${schoolPrefix.toUpperCase()}`,
-                    email: `guard@${schoolPrefix}.com`,
-                    password: "password123",
-                    role: "security_guard",
-                    schoolId: school._id
-                },
-                {
-                    name: `John Student (${schoolPrefix})`,
+                    name: `Student account`,
                     email: `student@${schoolPrefix}.com`,
                     password: "password123",
                     role: "student",
@@ -63,14 +56,7 @@ const seedData = async () => {
             ]);
         }
 
-        console.log('✅ Dummy Users & Roles Created');
-        console.log('-----------------------------------');
-        console.log('Credentials (Password for all: password123):');
-        console.log('1. superadmin@saas.com');
-        console.log('2. admin@globaledu.com');
-        console.log('3. guard@globaledu.com');
-        console.log('-----------------------------------');
-        
+        console.log('✅ Dummy Users & Roles Created (Guards Removed)');
         process.exit();
     } catch (err) {
         console.error(err);

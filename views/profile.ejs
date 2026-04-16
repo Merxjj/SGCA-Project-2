@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Digital ID | EDU-ID</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body { background: #f1f5f9; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+        .id-card {
+            width: 350px;
+            background: white;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .card-header {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid white;
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            object-fit: cover;
+            background: #fff;
+        }
+        .card-body {
+            margin-top: 70px;
+            padding: 2rem;
+            text-align: center;
+        }
+        .student-name { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .student-meta { color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.5rem; }
+        .qr-section {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin-top: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="id-card">
+        <div class="card-header">
+            EDU-ID Digital Card
+        </div>
+        
+        <% if (student) { %>
+            <img src="<%= student.imgUrl %>" class="profile-img" alt="Profile">
+            <div class="card-body">
+                <h2 class="student-name"><%= student.name %></h2>
+                <div class="student-meta">Roll No: <%= student.rollNo %> | Class: <%= student.class %></div>
+                
+                <div style="text-align: left; margin-bottom: 1.5rem; font-size: 0.875rem;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                        <span style="color: var(--text-muted);">Blood Group</span>
+                        <span style="font-weight: 600;"><%= student.bloodGroup || 'N/A' %></span>
+                    </div>
+                </div>
+
+                <div class="qr-section">
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem;">Official Verification QR</p>
+                    <img src="<%= student.qrCode %>" alt="QR Code" style="width: 100px; height: 100px;">
+                </div>
+            </div>
+        <% } else { %>
+            <div class="card-body">
+                <p>Please contact your institution to generate your digital ID card.</p>
+            </div>
+        <% } %>
+
+        <div style="padding: 1rem; text-align: center; border-top: 1px solid #f1f5f9;">
+            <a href="/logout" style="color: #ef4444; font-size: 0.875rem; text-decoration: none; font-weight: 600;">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
