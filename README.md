@@ -2,11 +2,11 @@
 
 A high-performance, multi-tenant SaaS platform built for schools and universities to manage digital ID cards and track student attendance via QR codes.
 
-🚀 **Live Demo**: [https://sgca-project-2.onrender.com](https://sgca-project-2.onrender.com)  
+**Live Demo**: [https://sgca-project-2.onrender.com](https://sgca-project-2.onrender.com)  
 
 ---
 
-## 🔑 Multi-Role Demo Accounts (Live Site)
+##  Multi-Role Demo Accounts (Live Site)
 Use these credentials to test different user perspectives immediately:
 
 | Role | Email | Password | Access |
@@ -19,7 +19,7 @@ Use these credentials to test different user perspectives immediately:
 
 ---
 
-## ⚡ Quick Start (For Evaluators)
+##  Quick Start (For Evaluators)
 To run this project locally in **under 2 minutes**:
 1.  **Extract** the ZIP and open terminal in the folder.
 2.  **Install**: `npm install`
@@ -30,7 +30,7 @@ To run this project locally in **under 2 minutes**:
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB (Atlas)
 - **Frontend**: EJS (Templating), Vanilla CSS, JavaScript
@@ -39,7 +39,7 @@ To run this project locally in **under 2 minutes**:
 
 ---
 
-## 📋 Features
+##  Features
 - **Multi-Tenant Architecture**: Complete data isolation between different schools.
 - **Unified Login**: A single, sleek portal for all roles (Super Admin, School Admin, Student).
 - **Dynamic QR Generation**: Automatic QR code creation during student enrollment.
@@ -48,7 +48,7 @@ To run this project locally in **under 2 minutes**:
 
 ---
 
-## 🔄 System Workflow
+##  System Workflow
 1. **School Registration**: Super Admin initializes a school entity.
 2. **Admin Setup**: The School Admin creates teacher and student accounts.
 3. **Student Deployment**:
@@ -59,7 +59,7 @@ To run this project locally in **under 2 minutes**:
 
 ---
 
-## 🚀 Local Installation
+##  Local Installation
 1. Clone the repository.
 2. Run `npm install`.
 3. Create a `.env` file with `MONGO_URI` and `SESSION_SECRET`.
@@ -68,7 +68,7 @@ To run this project locally in **under 2 minutes**:
 
 ---
 
-## 📌 API / Route Details
+##  API / Route Details
 - `/login`: Unified Authentication Portal
 - `/schools`: (Super Admin) Manage institutional licenses
 - `/users`: (Admin) Multi-role user management
